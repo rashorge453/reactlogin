@@ -8,10 +8,10 @@ routery.get('/',(req,res)=>{
 })
 
 routery.post("/Welcome",(req,res)=>{
-    const{Country,popu}=req.body
+    const{Year,Price}=req.body
     const user = new USER({
-        Country,
-        popu
+        Year,
+        Price
 
     })
     user.save()

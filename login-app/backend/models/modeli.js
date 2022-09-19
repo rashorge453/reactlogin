@@ -1,11 +1,11 @@
 const mongoose = require("mongoose")
 
 const sigUserSchema = new mongoose.Schema({
-      Country:{
-        type:String,
+      Year:{
+        type:Number,
         required:true,
       },
-      popu:{
+      Price:{
         type:Number,
         required:true,
       }
