@@ -1,15 +1,20 @@
 const mongoose = require("mongoose")
 
 const sigUserSchema = new mongoose.Schema({
-    email:{
+      Country:{
         type:String,
         required:true,
+      },
+      popu:{
+        type:Number,
+        required:true,
+      }
 
-    },
-    password:{
-        type:String,
-        required:true
-    }
+
+
+
+
+
 
 })
 

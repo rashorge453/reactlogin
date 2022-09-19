@@ -8,7 +8,7 @@ router.get('/',(req,res)=>{
 })
 
 router.post("/SignUp",(req,res)=>{
-    const{name,userName,email,password}=req.body
+    const{name,email,password}=req.body
     if(!name|| !email||!password){
        return res.status(422).json({error:"please add all the fields"})
     }
@@ -29,4 +29,28 @@ router.post("/SignUp",(req,res)=>{
     })
     
 })
+router.post("/SignIn", (req, res) => {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+        return res.status(422).json({ error: "email and password required" })
+    }
+    USER.findOne({ email: email }).then((savedUser) => {
+        if (!savedUser) {
+            return res.status(422).json({ error: "Wrong email" })
+        }
+        bcrypt.compare(password, savedUser.password).then((match) => {
+            if (match) {
+                return res.status(200).json({ message: "Signed in Successfully" })
+            } else {
+                return res.status(422).json({ error: "Invalid password" })
+            }
+        })
+            .catch(err => console.log(err))
+    })
+})
+
+
+
+
 module.exports = router
